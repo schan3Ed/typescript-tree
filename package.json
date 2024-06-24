@@ -1,0 +1,12 @@
+{
+    "name": "typescript-tree",
+    "version": "0.0.1",
+    "description": "A simple tree structure that allows import/export json",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "/dist"
+    ],
+    "author": "Ed Chan",
+    "license": "ISC"
+}
