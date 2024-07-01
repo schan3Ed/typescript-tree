@@ -12,5 +12,9 @@ describe("testing typescript tree", () => {
     node.addChild(childNode2);
 
     node.find("child node 2");
+    node.exportToFile("./tests/testTree.json");
+
+    const newNode = new Node("");
+    newNode.importFromFile("./tests/testTree.json");
   });
 });

@@ -1,3 +1,5 @@
+import { readFileSync, writeFileSync } from "fs";
+
 export class Node {
   Children: Node[];
   Data: any;
@@ -26,7 +28,6 @@ export class Node {
     while (tobeVisit.length) {
       const current = tobeVisit.pop();
 
-      console.log(current.Key);
       if (current.Key == name) {
         return current;
       }
@@ -35,9 +36,42 @@ export class Node {
     }
   }
 
-  exportToFile(fileName: string) {}
+  exportToFile(fileName: string) {
+    const treeJSON = treeToJSON(this);
+    writeFileSync(fileName, JSON.stringify(treeJSON));
+  }
 
-  importFromFile(fileName: string) {}
+  importFromFile(fileName: string) {
+    const json = readFileSync(fileName);
+    const node = jsonToTree(JSON.parse(json.toString()));
+
+    this.Children = node.Children;
+    this.Data = node.Data;
+    this.Key = node.Key;
+  }
+}
+
+function treeToJSON(node: Node): any {
+  let obj: any = {
+    name: node.Key,
+    data: node.Data,
+  };
+
+  obj.children = node.Children.map((child) => treeToJSON(child));
+
+  return obj;
+}
+
+function jsonToTree(json: any): Node {
+  let node: Node = new Node(json.name);
+
+  if (json.children && json.children.length > 0) {
+    node.Children = json.children.map((childJson: any) =>
+      jsonToTree(childJson)
+    );
+  }
+
+  return node;
 }
 
 export default Node;
