@@ -12,7 +12,11 @@ export class Node {
     this.Children.push(child);
   }
 
-  removeChild(name: string) {}
+  removeChild(name: string) {
+    this.Children = this.Children.filter((child) => {
+      return child.Key != name;
+    });
+  }
 
   find(name: string): Node {
     // DFS search
