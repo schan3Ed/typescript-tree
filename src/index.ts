@@ -5,9 +5,10 @@ export class Node {
   Data: any;
   Key: string;
 
-  constructor(name: string) {
+  constructor(name: string, data: any = null) {
     this.Key = name;
     this.Children = [];
+    this.Data = data;
   }
 
   addChild(child: Node) {
