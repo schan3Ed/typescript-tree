@@ -2,44 +2,43 @@
 
 a typescript library for managing a generic tree
 
-## Usage
+## Installation
 
-To use this TypeScript library for managing a generic tree, follow these steps:
+To install the `typescript-tree` library, run the following command:
 
-1. Install the library by running the following command:
+```bash
+npm install typescript-tree
+```
 
-   ```bash
-   npm install typescript-tree
-   ```
+## Code Example
 
-2. Import the library into your TypeScript file:
+Here is an example of how to use the `Node` class from the `typescript-tree` library:
 
-   ```typescript
-   import { Tree } from "typescript-tree";
-   ```
+```typescript
+import { Node } from "typescript-tree";
 
-3. Create a new instance of the `Tree` class:
+// Create a new instance of the Node class
+const rootNode = new Node("root");
 
-   ```typescript
-   const tree = new Tree();
-   ```
+// Add child nodes
+const childNode1 = new Node("child1");
+const childNode2 = new Node("child2");
+rootNode.addChild(childNode1);
+rootNode.addChild(childNode2);
 
-4. Add nodes to the tree using the `addNode` method:
+// Remove a child node
+rootNode.removeChild("child1");
 
-   ```typescript
-   tree.addNode("root");
-   tree.addNode("child", "root");
-   ```
+// Find a node by name
+const foundNode = rootNode.find("child2");
 
-5. Retrieve information about the tree using the provided methods:
+// Export the tree to a file
+rootNode.exportToFile("tree.json");
 
-   ```typescript
-   const rootNode = tree.getNode("root");
-   const childNode = tree.getNode("child");
-   const children = tree.getChildren("root");
-   ```
-
-6. Perform operations on the tree, such as removing nodes or traversing the tree structure.
+// Import the tree from a file
+const importedNode = new Node("root");
+importedNode.importFromFile("tree.json");
+```
 
 ## Contributing
 
